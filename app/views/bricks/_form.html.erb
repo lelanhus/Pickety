@@ -1,0 +1,39 @@
+<%= form_for @brick do |f| %>
+  <%= f.error_messages %>
+  <fieldset>
+    <legend>Brick Specific</legend>
+    <ol>
+      <li>
+        <%= f.label :name %><br />
+        <%= f.text_field :name %>
+      </li>
+      <li>
+        <%= f.collection_select :brick_category, Category.all, :id, :name, :prompt => "Select a Category" %> or create a new one:
+        <%= f.text_field :new_category %>
+      </li>
+    </ol>
+  </fieldset>
+
+  <fieldset>
+    <legend>State Info</legend>
+    <ol>
+      <li>
+        <%= f.collection_select :brick_to_state, State.all, :id, :name, :prompt => "Select a State" %> or create a new one: 
+        <%= f.text_field :new_state %>
+      </li>
+      <li>
+        <%= f.collection_select :state_to_species, Species.all, :id, :name, :prompt => "Select a Species" %> or create a new one: 
+        <%= f.text_field :new_species %>
+      </li>
+      <li>
+        <%= f.collection_select :species_to_gender, Gender.all, :id, :name, :prompt => "Select a Gender" %> or create a new one: 
+        <%= f.text_field :new_gender %>
+      </li>
+    </ol>
+  </fieldset>
+
+  <p><%= f.submit %></p>
+<% end %>
+
+<%= session[:brick_params]%>
+<%= params[:brick] %>

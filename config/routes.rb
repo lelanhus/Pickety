@@ -1,4 +1,15 @@
 Pickety::Application.routes.draw do
+  resources :bricks do
+    resources :relationships
+    resources :categorizations
+    resources :categorizations
+    resources :notes
+  end
+  
+  resources :categories do
+    resources :bricks
+  end
+      
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

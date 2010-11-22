@@ -1,0 +1,21 @@
+<h1><%= @brick.name %></h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Included?</th>
+  </tr>
+  
+  <% Category.all.each do |cat| %>
+    <tr>
+      <td><%= cat.name %></td>
+      <td>
+        <% if @brick.categories.include?(cat) %>
+          true
+        <% else %>
+          <%= link_to "Add Category", brick_categorizations_url(@brick, :category_id => cat.id), :method => :post %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

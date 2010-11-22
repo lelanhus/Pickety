@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  content: MyText
+  notable_id: 1
+  notable_type: MyString
+
+two:
+  content: MyText
+  notable_id: 1
+  notable_type: MyString

@@ -1,0 +1,68 @@
+<% title "Bricks" %>
+
+<table>
+  <tr>
+    <th>Brick</th>
+    <th>State</th>
+    <th>Relation</th>
+    <th>Inverse Relation</th>
+  </tr>
+  
+  <% @bricks.each do |brick| %>
+    <tr>
+      <td><%= link_to brick.name, brick %></td>
+      <td>
+        <table>
+          <% brick.states.each do |state| %>
+            <tr>
+              <td><%= state.name %></td>
+              <td>
+                <table>
+                  <% state.species.each do |species| %>
+                    <tr>
+                      <td><%= species.name %></td>
+                      <td>
+                        <table>
+                          <% species.genders.each do |gender| %>
+                            <tr>
+                              <td><%= gender.name %></td>
+                            </tr>
+                          <% end %>
+                        </table>
+                      </td>
+                    </tr>
+                  <% end %>
+                </table>
+              </td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+      <td>
+        <table>
+          <% brick.relations.each do |relation| %>
+            <tr>
+              <td><%= link_to relation.name, relation %></td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+      <td>
+        <table>
+          <% brick.inverse_relations.each do |relation| %>
+            <tr>
+              <td><%= link_to relation.name, relation %></td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+      <td>
+        <%= link_to "Destroy #{brick.name}", brick, :method => :delete, :confirm => "Are you sure you want to permanently destroy #{brick.name}? "%>
+      </td>
+      <td>
+        <%= link_to "View/Edit Relationships", brick_relationships_url(brick) %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+<p><%= link_to "New Brick", new_brick_path %></p>

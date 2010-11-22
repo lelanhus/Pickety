@@ -1,0 +1,31 @@
+<h1><%= @brick.name %></h1>
+
+<table>
+  <tr>
+    <th>Brick</th>
+    <th>Influencing</th>
+    <th>Influenced By</th>
+  </tr>
+  
+  <% @relationships.each do |relation| %>
+    <tr>
+      <td><%= relation.name %></td>
+      <td>
+        <% if @brick.relations.include?(relation) %>
+          true
+        <% else %>
+          <%= link_to "Start Influencing", brick_relationships_url(@brick, :relation_id => relation.id), :method => :post %>
+        <% end %>
+      </td>
+      <td>
+        <% if @brick.inverse_relations.include?(relation) %>
+          true
+        <% else %>
+          <%= link_to "Get Influenced", brick_relationships_url(relation.id, :relation_id => @brick.id), :method => :post %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "All Bricks", bricks_url %>

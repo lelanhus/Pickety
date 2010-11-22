@@ -1,0 +1,51 @@
+<% title "Brick" %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @brick.name %>
+</p>
+
+<table>
+  <tr>
+    <th>State</th>
+    <th>Species</th>
+    <th>Gender</th>
+    <th>Field</th>
+  </tr>
+  
+  <% @brick.states.each do |state| %>
+    <tr>
+      <td>
+        <%= state.name %>
+      </td>
+      <td>
+        <table>
+          <% state.species.each do |species| %>
+            <tr>
+              <td><%= species.name %></td>
+            </tr>
+          <% end %>
+        </table>
+      </td>
+      <td>
+        <% state.species.each do |species| %>
+          <% species.genders.each do |gender| %>
+            <%= gender.name %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<ul>
+  <% @brick.notes.each do |note| %>
+    <li><%= link_to note.title, brick_note_url(@brick, note) %></li>
+  <% end %>
+</ul>
+
+<p>
+  <%= link_to "Edit", edit_brick_path(@brick) %> |
+  <%= link_to "Destroy", @brick, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", bricks_path %>
+</p>
